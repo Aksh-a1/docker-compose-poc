@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const db = mongoose.connection
 
 const dbUrl = `mongodb://${process.env.DATABASE_LOCATION || 'localhost'}:${process.env.DATABASE_PORT || '27017'}/api_backend`
-console.log(dbUrl)
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
