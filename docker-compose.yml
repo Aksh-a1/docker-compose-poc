@@ -1,0 +1,29 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./todo-fe
+    ports:
+      - "3000:3000"
+    environment:
+      - API_LOCATION=backend
+    depends_on:
+      - backend
+    container_name: simple-todo-fe
+  backend:
+    build: ./todo-be
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_LOCATION=database
+    depends_on:
+      - database
+    container_name: simple-todo-be
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+    container_name: simple-todo-mongodb
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:
